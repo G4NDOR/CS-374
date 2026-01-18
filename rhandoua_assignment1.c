@@ -8,27 +8,27 @@
  */
 
 int main(void) {
-    // Variable Declarations [cite: 1337, 1358]
+    // Variable Declarations
     int n, i;
     int valid_sets = 0;
     float R, ha, hb;
     double a, b, h;
     double top_area, bottom_area, lateral_area, total_area, volume;
     double total_area_sum = 0, volume_sum = 0;
-    const double PI = 3.14159265359; // [cite: 1361]
+    const double PI = 3.14159265359;
 
-    // 1. Request number of segments (n) [cite: 1338]
-    // Loop repeats until n is between 2 and 10 [cite: 1339]
+    // 1. Request number of segments (n)
+    // Loop repeats until n is between 2 and 10
     do {
         printf("How many spherical segments you want to evaluate [2-10]?\n");
         scanf("%d", &n);
     } while (n < 2 || n > 10);
 
-    // 2. Main loop to process n valid segments [cite: 1340, 1353]
+    // 2. Main loop to process n valid segments
     while (valid_sets < n) {
         printf("Obtaining data for spherical segment number %d\n", valid_sets + 1);
         
-        // Input R, ha, hb in exact order [cite: 1341, 1342]
+        // Input R, ha, hb in exact order
         printf("What is the radius of the sphere (R)?\n");
         scanf("%f", &R);
         printf("What is the height of the top area of the spherical segment (ha)?\n");
@@ -36,17 +36,17 @@ int main(void) {
         printf("What is the height of the bottom area of the spherical segment (hb)?\n");
         scanf("%f", &hb);
 
-        // Echoing Input [cite: 1347, 1391]
+        // Echoing Input
         printf("Entered data: R=%.2f ha=%.2f hb=%.2f.\n", R, ha, hb);
 
-        // 3. Validation [cite: 1349, 1350, 1351]
+        // 3. Validation
         if (R <= 0 || ha <= 0 || hb <= 0 || ha > R || hb > R || hb > ha) {
-            printf("Invalid Input.\n"); // [cite: 1352]
-            continue; // Re-request values for this set [cite: 1352]
+            printf("Invalid Input.\n"); 
+            continue; // Re-request values for this set
         }
 
-        // 4. Calculations [cite: 1332, 1333, 1334, 1335]
-        a = sqrt((R * R) - (ha * ha)); // [cite: 1363, 1364]
+        // 4. Calculations
+        a = sqrt((R * R) - (ha * ha));
         b = sqrt((R * R) - (hb * hb));
         h = ha - hb;
         
@@ -56,16 +56,16 @@ int main(void) {
         total_area = top_area + bottom_area + lateral_area;
         volume = (1.0/6.0) * PI * h * (3 * a * a + 3 * b * b + h * h);
 
-        // 5. Output results for this segment [cite: 1356]
+        // 5. Output results for this segment
         printf("Total Surface Area=%.2f Volume=%.2f.\n", total_area, volume);
 
-        // Accumulate sums for averages [cite: 1357]
+        // Accumulate sums for averages
         total_area_sum += total_area;
         volume_sum += volume;
         valid_sets++;
     }
 
-    // 6. Report averages [cite: 1357, 1425]
+    // 6. Report averages
     printf("Total average results:\n");
     printf("Average Surface Area=%.2f Average Volume=%.2f\n", 
             total_area_sum / n, volume_sum / n);
